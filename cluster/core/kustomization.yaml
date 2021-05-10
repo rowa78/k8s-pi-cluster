@@ -4,4 +4,5 @@ resources:
 - namespaces
 - metallb-system
 - cert-manager
+- cert-manager-webhook-hetzner
 - system-upgrade
