@@ -159,9 +159,9 @@ export FLUX_KEY_FP=AB675CE4CC64251G3S9AE1DAA88ARRTY2C009E2D
 
 ```sh
 k3sup install \
-    --host=169.254.1.1 \
-    --user=k8s-at-home \
-    --k3s-version=v1.20.5+k3s1 \
+    --host=pi-0 \
+    --user=ubuntu \
+    --k3s-version=v1.20.6+k3s1 \
     --k3s-extra-args="--disable servicelb --disable traefik"
 ```
 
