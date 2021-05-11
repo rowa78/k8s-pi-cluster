@@ -16,19 +16,16 @@ spec:
                 namespace: flux-system
     values:
         prometheus:
-            storageSpec:
+            storageSpec: 
+                ## Using PersistentVolumeClaim
+                ##
                 volumeClaimTemplate:
-                    spec: null
-                    accessModes:
-                        - ReadWriteOnce
-                    resources:
-                        requests: null
-                        storage: 50Gi
-                    selector:
-                        matchExpressions: []
-                        matchLabels: {}
-                    volumeMode: Filesystem
-                    storageClassName: nfs-client
+                    spec:
+                        storageClassName: nfs-client
+                        accessModes: ["ReadWriteOnce"]
+                        resources:
+                            requests:
+                                storage: 50Gi
         grafana:
             adminPassword: ENC[AES256_GCM,data:vvUrNL5H+L4=,iv:pra+gdueiVeSowCQr7vPHsBW8B8NdnsgzuLSntkKSds=,tag:aoKzCYxZV9F+Zk16/D+lcg==,type:str]
             ingress:
