@@ -1,29 +1,80 @@
----
 apiVersion: helm.toolkit.fluxcd.io/v2beta1
 kind: HelmRelease
 metadata:
-  name: prometheus-stack
-  namespace: monitoring
+    name: prometheus-stack
+    namespace: monitoring
 spec:
-  interval: 5m
-  chart:
-    spec:
-      # renovate: registryUrl=https://prometheus-community.github.io/helm-charts
-      chart: kube-prometheus-stack
-      version: 15.4.4
-      sourceRef:
-        kind: HelmRepository
-        name: prometheus-community-charts
-        namespace: flux-system
-  values:
-    grafana:
-      ingress: 
-        enabled: true        
-        annotations:
-          kubernetes.io/ingress.class: "nginx"
-        hosts:
-          - "grafana.${SECRET_DOMAIN}"
-        path: /        
-        tls:
-        - hosts:
-          - "grafana.${SECRET_DOMAIN}"
+    interval: 5m
+    chart:
+        spec:
+            # renovate: registryUrl=https://prometheus-community.github.io/helm-charts
+            chart: kube-prometheus-stack
+            version: 15.4.4
+            sourceRef:
+                kind: HelmRepository
+                name: prometheus-community-charts
+                namespace: flux-system
+    values:
+        grafana:
+            adminPassword: ENC[AES256_GCM,data:vvUrNL5H+L4=,iv:pra+gdueiVeSowCQr7vPHsBW8B8NdnsgzuLSntkKSds=,tag:aoKzCYxZV9F+Zk16/D+lcg==,type:str]
+            ingress:
+                enabled: true
+                annotations:
+                    kubernetes.io/ingress.class: nginx
+                hosts:
+                    - grafana.${SECRET_DOMAIN}
+                path: /
+                tls:
+                    - hosts:
+                        - grafana.${SECRET_DOMAIN}
+sops:
+    kms: []
+    gcp_kms: []
+    azure_kv: []
+    hc_vault: []
+    age: []
+    lastmodified: "2021-05-11T14:30:34Z"
+    mac: ENC[AES256_GCM,data:vuCKtfRKiPwdS+bdAjpJ1EmlInXQcnpOkJOtb38ruqF4BtJd7PsqMwtMz8fEjTsWMdXxL/JXwFtw4DCQLhFDfERWBXuME7eaX1G2egtxD6smsWcY717hy3pHGw8Js3euwkZDZmUHZKY9T2pAzaTGkB7iaCoVxs2owFqA0GSQMm4=,iv:5jdSmiLaQxiW6OPf99USNO13zZ4jQAcLqKWizFbaQFU=,tag:0sA+IncHJ4t5egFkzYop0A==,type:str]
+    pgp:
+        - created_at: "2021-05-11T14:30:34Z"
+          enc: |
+            -----BEGIN PGP MESSAGE-----
+
+            hQIMA15IwYsnLMdUARAAiBlUkmtDXifhngtGIvwaY4ACOpWT5NJcATNh3Ykvycn9
+            XR3jB7M5Vwi9+6hn1b9noAhwzcAW7IBk5TfE5CsqZQRx/x/rDgvQvdGQPM84seWW
+            /TIYx56A0z/jZDz2MdiT5fYjVh8RZxc3pF65iTWNPcEYI8r6+pMcONW0PS+BgHer
+            heQhjgcESoobyYXLan14JW1ol3xlgl+Svk++jGkGZN363fC0TjJMIZILPxgh8Djc
+            AzxbY/wOdOFI7VX3TNmn/lo9+ZZQFomCLRcRSO3kmK0W3V/zVkwayWXW3NUL1n2K
+            7oeJK0ALkYOnNNBlHRkkT3k5jbPfnBbPxbzN97LATLzySypeMyXqAqLGwgPzkDD/
+            FbS6JL8T3NNQmysreTc8zcbvs7TL25mWhqn2rqKP6jFCryT00UKQbS7ni6CBRy+p
+            NRKVm80LWhMERpBoKphP6LTL9rNb//tqIMCpITfW//rqqG14jTrk2j7N/OjF+p3L
+            Ku/2m27Z7DXfNa27N7iJIW/oTm6NtFVDjY9X+Iq59v8xOwwYA99spp6rxMhfellI
+            Bjk54847nmWpeSbwu6ciSOTHVuEcQg4HRT9Ffa8DxosscHlmqdUlElpuTQoBZGU9
+            wn3XBofXGCIQyYL4KPF/AQFtIUFhkSgCqB40xU3hjae7f95OLLY5t/+z71GCViDS
+            XAFBlK1eTiCpazP7XIRF6IWwieqCRAo0GszVOpCFQ7wYwj3iEesoGvRclMznZOg+
+            VVUGYXp4wXJ+iRnzcdNyXO5p4Q8k4Qo7xg/B5vITtqw/UP6m5YRq7PSUBuWn
+            =BPdo
+            -----END PGP MESSAGE-----
+          fp: D12BD0FB7BD2EB9C6265CAE6187D2A8EB13DD417
+        - created_at: "2021-05-11T14:30:34Z"
+          enc: |
+            -----BEGIN PGP MESSAGE-----
+
+            hQIMAwXhL0j2oT23AQ/9HQowlfBexMrAzgsRwH/+zHeWU1ZekCFp3hlEKMzcvI9T
+            soXYi+suVgrlyPqoyDGnEhT+Tpz6ztFcezH9hx2QAFVRa+pTqNwfZzQ9NGrNHsl8
+            U6vONBh6MPv/M7JWJh1nn4Pnb0EhVwRptRv9VXBq7O+Xq2AkYZRpYAY2UB9lik4l
+            vzb/gHZ+pA3ydZKArhMnlxKOUQlLxZmOG32BskEz/RBhw7rXpv7wReTZAHyjrlFx
+            0ikCezEQYYW4uqd0tG9UsEmHWEwyPJkF6gfo+ymirYp9/O/0ijNiiUepJNu/PHSW
+            fKMAzBmN8lzgefgNEInyltEHaERuPURx0CRe/XdM6197hpFFMew+V55LeQ7NCg9m
+            2lNGCEA9k3kmoL4FankVtOlxvXUd6iHxvaht8/i270pbxtIlajv6YDMElXTuSsTq
+            k9suC5UgjRe0+wuyLAwQYbGGoteBppGfTGTKVQx+lLCXyPILXpv2lSPWkzhgktpo
+            U/W3AYOdBQqKDx14nbSgkPI8ctfgpDLoUE3X1ghPQ7pDRNlUHtyNJ/mcHngoRn2W
+            yNckjLl8M89YyKWu+UXK+5xv20EVJg6KHDK2vg5FuQf+1fYZU+FYgPKZj4I3wXyH
+            ukCKVSK8DAIHOTcuxopQK2mDxsNpcC08BeLppZQo7LQu0p5YB3q2WDLPGaBCSVbS
+            XAFx58551mOAqwKCqbblLLK5A/i3r758RH3K4EN4HDJZJ2oPqV/DiAhLsD+D7wac
+            fnxjCp+nRbdAXUqbC6wFdrIQdfu9YGGAU/XlmCKGY/7Q42LUo9GOnuleIUlL
+            =bGUV
+            -----END PGP MESSAGE-----
+          fp: 22CEC603BF6DC9B48553325AD06B72C3C2096F2E
+    encrypted_regex: ^(data|stringData|adminPassword)$
+    version: 3.7.1
