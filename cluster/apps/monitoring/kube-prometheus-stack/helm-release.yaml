@@ -46,6 +46,11 @@ spec:
                 size: 5Gi
                 storageClassName: nfs-client
                 type: pvc
+            initChownData:
+                ## If false, data ownership will not be reset at startup
+                ## This allows the prometheus-server to be run with an arbitrary user
+                ##
+                enabled: false
 sops:
     kms: []
     gcp_kms: []
