@@ -15,6 +15,20 @@ spec:
                 name: prometheus-community-charts
                 namespace: flux-system
     values:
+        prometheus:
+            storageSpec:
+                volumeClaimTemplate:
+                    spec: null
+                    accessModes:
+                        - ReadWriteOnce
+                    resources:
+                        requests: null
+                        storage: 50Gi
+                    selector:
+                        matchExpressions: []
+                        matchLabels: {}
+                    volumeMode: Filesystem
+                    storageClassName: nfs-client
         grafana:
             adminPassword: ENC[AES256_GCM,data:vvUrNL5H+L4=,iv:pra+gdueiVeSowCQr7vPHsBW8B8NdnsgzuLSntkKSds=,tag:aoKzCYxZV9F+Zk16/D+lcg==,type:str]
             ingress:
@@ -27,14 +41,21 @@ spec:
                 tls:
                     - hosts:
                         - grafana.${SECRET_DOMAIN}
+            persistence:
+                accessModes:
+                    - ReadWriteMany
+                enabled: true
+                size: 5Gi
+                storageClassName: nfs-client
+                type: pvc
 sops:
     kms: []
     gcp_kms: []
     azure_kv: []
     hc_vault: []
     age: []
-    lastmodified: "2021-05-11T14:30:34Z"
-    mac: ENC[AES256_GCM,data:vuCKtfRKiPwdS+bdAjpJ1EmlInXQcnpOkJOtb38ruqF4BtJd7PsqMwtMz8fEjTsWMdXxL/JXwFtw4DCQLhFDfERWBXuME7eaX1G2egtxD6smsWcY717hy3pHGw8Js3euwkZDZmUHZKY9T2pAzaTGkB7iaCoVxs2owFqA0GSQMm4=,iv:5jdSmiLaQxiW6OPf99USNO13zZ4jQAcLqKWizFbaQFU=,tag:0sA+IncHJ4t5egFkzYop0A==,type:str]
+    lastmodified: "2021-05-11T14:45:19Z"
+    mac: ENC[AES256_GCM,data:XTc8P42TxEuISNSINR4TWA80UuSKE7mZcUqT5+GvFc2dCAHXOyjThs6ZlfDKWVa1tu3Tt63OwI8S8saxQVhst7+Q00uxrYS11/RyTP4rVglOMjL9wfrv9ySD0QkCmz7/b5NRsCyKBWfD+1AXpX/XEilQa+F8APgFHcCOqXpnZeM=,iv:ywaEgjKkVOE+N0LbN4gqHv63w9qqy6FhQDxDHz1xkd8=,tag:e+jQby+9rd+nS8ad5IbVdw==,type:str]
     pgp:
         - created_at: "2021-05-11T14:30:34Z"
           enc: |
