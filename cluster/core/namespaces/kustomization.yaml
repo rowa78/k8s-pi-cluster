@@ -6,3 +6,4 @@ resources:
 - networking.yaml
 - nfs-subdir-external-provisioner.yaml
 - monitoring.yaml
+- home.yaml
