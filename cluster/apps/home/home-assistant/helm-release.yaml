@@ -26,7 +26,7 @@ spec:
     dnsPolicy: ClusterFirstWithHostNet
     service:
       type: LoadBalancer
-      loadBalancerIP: $ {HASS_LB_IP}
+      loadBalancerIP: ${HASS_LB_IP}
     ingress:
       enabled: true
       annotations:
