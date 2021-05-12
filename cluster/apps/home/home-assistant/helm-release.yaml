@@ -97,8 +97,8 @@ spec:
         memory: 1000Mi
     postgresql:
       enabled: true
-      repository: bitnami/postgresql
-      tag: 11.11.0
+      repository: postgres
+      tag: 11.11
       postgresqlUsername: home-assistant
       postgresqlPassword: ${SECRET_HASS_POSTGRES_PW}
       postgresqlDatabase: home-assistant
