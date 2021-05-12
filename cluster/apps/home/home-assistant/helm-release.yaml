@@ -103,7 +103,3 @@ spec:
       persistence:
         enabled: true
         storageClass: "nfs-client"
-  valuesFrom:
-  - kind: Secret
-    name: "home-assistant-helm-values"
-    optional: false
