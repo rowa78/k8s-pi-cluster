@@ -16,6 +16,12 @@ spec:
                 namespace: flux-system
     values:
         prometheus:
+            serviceMonitorSelector: {}
+            serviceMonitorNamespaceSelector: {}
+            serviceMonitorSelectorNilUsesHelmValues: false
+            podMonitorSelector: {}
+            podMonitorNamespaceSelector: {}
+            podMonitorSelectorNilUsesHelmValues: false
             ingress:
                 enabled: true
                 annotations:
