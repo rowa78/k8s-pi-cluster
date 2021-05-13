@@ -62,7 +62,8 @@ spec:
           gameMode: survival
           motd: "Caro + Sofia"
           maxPlayers: 3
-          whitelist: atlan78, carofox, Miaufox1
+          whitelist: atlan78,carofox,miaufox1
+          ops: Atlan78,carofox
           icon: https://www.freeiconspng.com/uploads/minecraft-server-icon-13.png
           loadBalancerIP: ${MINECRAFT_1_LB}
           rcon:
