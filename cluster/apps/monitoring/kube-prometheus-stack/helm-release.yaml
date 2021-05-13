@@ -16,6 +16,16 @@ spec:
                 namespace: flux-system
     values:
         prometheus:
+            ingress:
+                enabled: true
+                annotations:
+                    kubernetes.io/ingress.class: nginx
+                hosts:
+                    - prom.${SECRET_DOMAIN}
+                path: /
+                tls:
+                    - hosts:
+                        - prom.${SECRET_DOMAIN}
             prometheusSpec:
                 storageSpec: 
                     ## Using PersistentVolumeClaim
