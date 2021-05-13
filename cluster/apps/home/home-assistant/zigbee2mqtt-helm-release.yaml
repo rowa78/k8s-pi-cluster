@@ -1,0 +1,52 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: zigbee2mqtt
+  namespace: home
+spec:
+  interval: 5m
+  chart:
+    spec:
+      # renovate: registryUrl=https://k8s-at-home.com/charts/
+      chart: zigbee2mqtt
+      version: 7.4.0
+      sourceRef:
+        kind: HelmRepository
+        name: k8s-at-home-charts
+        namespace: flux-system
+      interval: 5m
+  values:    
+    env:
+      TZ: "Europe/Berlin"
+    # Path to your zigbee device in the container
+    additionalVolumeMounts:
+      - name: raspbee
+        mountPath: /dev/ttyAMA0
+
+    # Path to your zigbee device on the host
+    additionalVolumes: 
+      - name: raspbee
+        hostPath:
+          path: /dev/ttyAMA0
+    # MQTT settings
+    mqtt:
+      # MQTT base topic for zigbee2mqtt MQTT messages
+      base_topic: zigbee2mqtt
+      # MQTT server URL
+      server: "mqtt://mosquitto"
+      # MQTT server authentication, uncomment if required:
+      # user: my_user
+      # password: my_password
+      # client_id: my_id
+      # Alternatively, credentials may be put into a separate file, managed through a secret:
+      # password: '!secret password'
+    affinity:
+      nodeAffinity:
+        requiredDuringSchedulingIgnoredDuringExecution:
+          nodeSelectorTerms:
+          - matchExpressions:
+            - key: app
+              operator: In
+              values:
+              - zigbee-controller
