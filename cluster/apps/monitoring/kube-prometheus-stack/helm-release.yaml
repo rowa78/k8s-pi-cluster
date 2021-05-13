@@ -15,13 +15,7 @@ spec:
                 name: prometheus-community-charts
                 namespace: flux-system
     values:
-        prometheus:
-            serviceMonitorSelector: {}
-            serviceMonitorNamespaceSelector: {}
-            serviceMonitorSelectorNilUsesHelmValues: false
-            podMonitorSelector: {}
-            podMonitorNamespaceSelector: {}
-            podMonitorSelectorNilUsesHelmValues: false
+        prometheus:            
             ingress:
                 enabled: true
                 annotations:
@@ -34,6 +28,12 @@ spec:
                     - hosts:
                         - prom.${SECRET_DOMAIN}
             prometheusSpec:
+                serviceMonitorSelector: {}
+                serviceMonitorNamespaceSelector: {}
+                serviceMonitorSelectorNilUsesHelmValues: false
+                podMonitorSelector: {}
+                podMonitorNamespaceSelector: {}
+                podMonitorSelectorNilUsesHelmValues: false
                 storageSpec: 
                     ## Using PersistentVolumeClaim
                     ##
