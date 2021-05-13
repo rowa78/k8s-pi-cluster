@@ -7,3 +7,4 @@ resources:
 - nfs-subdir-external-provisioner.yaml
 - monitoring.yaml
 - home.yaml
+- minecraft.yaml
