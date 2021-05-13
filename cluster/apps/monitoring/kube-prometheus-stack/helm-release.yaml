@@ -22,6 +22,8 @@ spec:
                     kubernetes.io/ingress.class: nginx
                 hosts:
                     - prom.${SECRET_DOMAIN}
+                path: /
+                pathType: Prefix
                 tls:
                     - hosts:
                         - prom.${SECRET_DOMAIN}
