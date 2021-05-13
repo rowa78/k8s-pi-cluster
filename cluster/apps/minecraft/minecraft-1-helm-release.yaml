@@ -16,7 +16,7 @@ spec:
                 namespace: flux-system
     values:
         image: itzg/minecraft-server
-        imageTag: 1.8.0-adopt13
+        imageTag: 2021.9.0-multiarch-latest
         persistence:
           storageClass: "nfs-client"
           dataDir:
