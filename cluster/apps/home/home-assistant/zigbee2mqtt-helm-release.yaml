@@ -83,7 +83,7 @@ spec:
         port: /dev/ttyAMA0
 
         # Optional: adapter type, not needed unless you are experiencing problems (options: zstack, deconz)
-        # adapter: deconz
+        adapter: deconz
    
     affinity:
       nodeAffinity:
