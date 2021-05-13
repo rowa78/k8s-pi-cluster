@@ -7,4 +7,4 @@ resources:
 - k8s-at-home-charts.yaml
 - nfs-subdir-external-provisioner-charts.yaml
 - prometheus-community-charts.yaml
-
+- itzg-charts.yaml
