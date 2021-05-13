@@ -1,7 +1,7 @@
 apiVersion: helm.toolkit.fluxcd.io/v2beta1
 kind: HelmRelease
 metadata:
-    name: minecraft-1
+    name: minecraft-caro-sofia
     namespace: minecraft
 spec:
     interval: 5m
@@ -25,9 +25,10 @@ spec:
         resources:
           requests:
             memory: 512Mi
-            cpu: 250m
+            cpu: 500m
           limits:
             memory: 2048Mi
+            cpu: 2000m
         livenessProbe:
           initialDelaySeconds: 30
           periodSeconds: 5
