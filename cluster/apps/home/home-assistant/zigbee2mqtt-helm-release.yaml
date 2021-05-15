@@ -22,13 +22,15 @@ spec:
     # Path to your zigbee device in the container
     additionalVolumeMounts:
       - name: raspbee
-        mountPath: /dev/serial/by-id/usb-dresden_elektronik_ingenieurtechnik_GmbH_ConBee_II_DE2429022-if00
+        mountPath: /dev/ttyACM0
     # Path to your zigbee device on the host
     additionalVolumes: 
       - name: raspbee
         hostPath:
-          path: /dev/serial/by-id/usb-dresden_elektronik_ingenieurtechnik_GmbH_ConBee_II_DE2429022-if00
-
+          path: /dev/ttyACM0
+    securityContext:
+      runAsUser: 1000
+      runAsGroup: 1000
     persistence:
       data:
         enabled: true
@@ -80,7 +82,7 @@ spec:
       # USB / Serial settings
       serial:
         # Location of your zigbee device
-        port: /dev/serial/by-id/usb-dresden_elektronik_ingenieurtechnik_GmbH_ConBee_II_DE2429022-if00
+        port: /dev/ttyACM0
 
         # Optional: adapter type, not needed unless you are experiencing problems (options: zstack, deconz)
         #adapter: deconz
