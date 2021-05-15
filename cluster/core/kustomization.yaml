@@ -6,4 +6,4 @@ resources:
 - cert-manager
 - system-upgrade
 - storage
-- node-feature-discovery
+#- node-feature-discovery
