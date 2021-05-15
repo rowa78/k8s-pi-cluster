@@ -22,12 +22,12 @@ spec:
     # Path to your zigbee device in the container
     additionalVolumeMounts:
       - name: raspbee
-        mountPath: /dev/ttyAMA0
+        mountPath: /dev/ttyACM0
     # Path to your zigbee device on the host
     additionalVolumes: 
       - name: raspbee
         hostPath:
-          path: /dev/ttyAMA0
+          path: /dev/ttyACM0
 
     persistence:
       data:
@@ -80,7 +80,7 @@ spec:
       # USB / Serial settings
       serial:
         # Location of your zigbee device
-        port: /dev/ttyAMA0
+        port: /dev/ttyACM0
 
         # Optional: adapter type, not needed unless you are experiencing problems (options: zstack, deconz)
         adapter: deconz
