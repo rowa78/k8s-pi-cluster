@@ -1,0 +1,37 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: zigbee
+  labels:
+    env: test
+spec:
+  affinity:
+    nodeAffinity:
+      requiredDuringSchedulingIgnoredDuringExecution:
+        nodeSelectorTerms:
+        - matchExpressions:
+          - key: app
+            operator: In
+            values:
+            - zigbee-controller
+  containers:
+  - env:
+    - name: TZ
+      value: Europe/Berlin
+    image: koenkk/zigbee2mqtt:1.17.1
+    command: ["/bin/sleep"]
+    args: ["100000"]
+    imagePullPolicy: IfNotPresent
+    name: ubuntu
+    securityContext:
+      #runAsUser: 1000
+      #runAsGroup: 1000
+      privileged: true
+    volumeMounts:
+    - mountPath: /dev/ttyACM0
+      name: raspbee
+  volumes:
+  - hostPath:
+      path: /dev/ttyACM0
+      type: ""
+    name: raspbee
