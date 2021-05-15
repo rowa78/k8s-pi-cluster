@@ -29,7 +29,7 @@ spec:
         hostPath:
           path: /dev/ttyACM0
     securityContext:
-      priviledeg: true
+      privileged: true
     persistence:
       data:
         enabled: true
