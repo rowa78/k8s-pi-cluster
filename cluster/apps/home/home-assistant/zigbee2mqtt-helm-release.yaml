@@ -27,7 +27,7 @@ spec:
     additionalVolumes: 
       - name: raspbee
         hostPath:
-          path: /dev/ttyACM0
+          path: /dev/serial/by-id/usb-dresden_elektronik_ingenieurtechnik_GmbH_ConBee_II_DE2429022-if00
 
     persistence:
       data:
