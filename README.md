@@ -285,7 +285,8 @@ git push
 :round_pushpin: Due to race conditions with the Flux CRDs you will have to run the below command twice. There should be no errors on this second run.
 
 ```sh
-kubectl --kubeconfig=./kubeconfig apply --kustomize=./cluster/base/flux-system
+# run this with an up2date kubectl version!
+kubectl kustomize cluster/base/flux-system | kubectl apply -f -
 # namespace/flux-system configured
 # customresourcedefinition.apiextensions.k8s.io/alerts.notification.toolkit.fluxcd.io created
 # customresourcedefinition.apiextensions.k8s.io/buckets.source.toolkit.fluxcd.io created
