@@ -18,3 +18,7 @@ spec:
   values:
     env:
       TZ: "Europe/Berlin"
+    image:
+      repository: gcr.io/k8s-staging-nfd/node-feature-discovery
+      tag: release-0.8-minimal
+
