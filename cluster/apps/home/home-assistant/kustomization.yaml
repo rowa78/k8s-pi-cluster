@@ -3,4 +3,4 @@ kind: Kustomization
 resources:
 - hass-helm-release.yaml
 - mosquitto-helm-release.yaml
-- zigbee2mqtt-helm-release.yaml
+#- zigbee2mqtt-helm-release.yaml
