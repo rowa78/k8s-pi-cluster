@@ -3,4 +3,5 @@ kind: Kustomization
 resources:
 - ingress-nginx
 - wildcard-certificate
-#- blocky
+- endpoints
+- blocky
