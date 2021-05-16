@@ -68,3 +68,5 @@ spec:
                 ## This allows the prometheus-server to be run with an arbitrary user
                 ##
                 enabled: false
+            plugins:
+                - grafana-piechart-panel
