@@ -28,7 +28,8 @@ subsets:
 apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
-  name: external-ip-diskstation
+  name: diskstation
+  namespace: networking
 spec:
   rules:
   - host: ds.${SECRET_DOMAIN}
