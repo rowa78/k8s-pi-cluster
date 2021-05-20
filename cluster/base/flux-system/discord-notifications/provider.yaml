@@ -7,4 +7,5 @@ metadata:
 spec:
   type: discord  
   channel: flux
-  address: https://${SECRET_DISCORD_FLUX_WEBHOOK_URL}
+  secretRef:
+    name: discord-webhook-url

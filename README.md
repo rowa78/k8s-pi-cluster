@@ -246,6 +246,8 @@ export BOOTSTRAP_DOMAIN="k8s-at-home.com"
 export BOOTSTRAP_METALLB_LB_RANGE="169.254.1.10-169.254.1.20"
 # The load balancer IP for ingress-nginx, choose from one of the available IPs above
 export BOOTSTRAP_INGRESS_NGINX_LB="169.254.1.10"
+# a discord webhook url
+export DISCORD_FLUX_WEBHOOK_URL=https://discord.com/api/webhooks/XYZ
 ```
 
 5. Create required files based on ALL exported environment variables.
@@ -256,6 +258,7 @@ envsubst < ./tmpl/cluster-secrets.yaml > ./cluster/base/cluster-secrets.yaml
 envsubst < ./tmpl/cluster-settings.yaml > ./cluster/base/cluster-settings.yaml
 envsubst < ./tmpl/gotk-sync.yaml > ./cluster/base/flux-system/gotk-sync.yaml
 envsubst < ./tmpl/secret.enc.yaml > ./cluster/core/cert-manager/secret.enc.yaml
+envsubst < ./tmpl/discord-webhook-secret.yaml > cluster/base/discord-webhook-secret.yaml
 ```
 
 6. **Verify** all the above files have the correct information present
@@ -266,6 +269,7 @@ envsubst < ./tmpl/secret.enc.yaml > ./cluster/core/cert-manager/secret.enc.yaml
 export GPG_TTY=$(tty)
 sops --encrypt --in-place ./cluster/base/cluster-secrets.yaml
 sops --encrypt --in-place ./cluster/core/cert-manager/secret.enc.yaml
+sops --encrypt --in-place cluster/base/discord-webhook-secret.yaml
 ```
 
 :round_pushpin: Variables defined in `cluster-secrets.yaml` and `cluster-settings.yaml` will be usable anywhere in your YAML manifests under `./cluster`
