@@ -175,6 +175,7 @@ k3sup join \
     --user=k8s-at-home
 ```
 
+
 4. Verify the nodes are online
    
 ```sh
